@@ -4,12 +4,14 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all
+    @posts = Post.paginate(:page => params[:page], :per_page => 10)
   end
 
   # GET /posts/1
   # GET /posts/1.json
   def show
+    @post = Post.find(params[:id])
+    commontator_thread_show(@post)
   end
 
   # GET /posts/new
@@ -35,6 +37,20 @@ class PostsController < ApplicationController
         format.json { render json: @post.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def like
+    @post = Post.find(params[:id])
+    @post.upvote_by current_user
+
+    redirect_to root_path
+  end
+
+  def dislike
+    @post = Post.find(params[:id])
+    @post.downvote_from current_user
+
+    redirect_to root_path
   end
 
   # PATCH/PUT /posts/1
@@ -69,6 +85,6 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:title, :body)
+      params.require(:post).permit(:title, :body, :name)
     end
 end

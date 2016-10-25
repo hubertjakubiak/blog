@@ -3,10 +3,12 @@ source 'https://rubygems.org'
 ruby '2.3.0'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.6'
+gem 'acts_as_votable', '~> 0.10.0'
 # Use sqlite3 as the database for Active Record
 gem 'pg', group: [:development, :production]
 gem 'sqlite3', group: :test
 # Use SCSS for stylesheets
+gem 'bootstrap-sass', '~> 3.3.6'
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
@@ -25,6 +27,8 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'rails_12factor', group: :production
+gem 'devise'
+gem 'commontator', '~> 4.11.1'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -47,4 +51,10 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 end
+
+gem 'activeadmin', github: 'activeadmin'
+gem 'faker'
+gem 'will_paginate', '~> 3.1.0'
+gem 'will_paginate-bootstrap'
+
 

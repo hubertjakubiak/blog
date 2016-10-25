@@ -1,10 +1,34 @@
 Rails.application.routes.draw do
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
+  get 'names/index'
+
+  get '/about' => 'pages#about'
+
+  get '/contact' => 'pages#contact'
+
+  devise_for :users, :controllers => { registrations: 'registrations' }
   resources :posts
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
+  get 'names/:name' => 'names#index'
+
+  resources :names
+
+  resources :posts do
+    member do
+      get "like", to:    "posts#like"
+      get "dislike", to:    "posts#dislike"
+    end
+    resources :comments
+  end
+
   # You can have the root of your site routed with "root"
   root 'posts#index'
+
+  mount Commontator::Engine => '/commontator'
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
