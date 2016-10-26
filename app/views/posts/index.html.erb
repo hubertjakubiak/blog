@@ -22,7 +22,7 @@
       <% end %>
     </tbody>
   </table>
-<%= will_paginate @posts, renderer: BootstrapPagination::Rails %>
+<%= paginate @posts, theme: 'twitter-bootstrap-3' %>
 <br>
 
 <%= link_to 'New Post', new_post_path, class: 'btn btn-primary btn-large' %>
