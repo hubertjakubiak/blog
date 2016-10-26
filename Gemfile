@@ -56,5 +56,6 @@ gem 'activeadmin', github: 'activeadmin'
 gem 'faker'
 gem 'kaminari'
 gem 'bootstrap-kaminari-views'
+gem 'sidekiq'
 
 

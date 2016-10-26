@@ -8,7 +8,6 @@ Rails.application.routes.draw do
   get '/contact' => 'pages#contact'
 
   devise_for :users, :controllers => { registrations: 'registrations' }
-  resources :posts
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -17,6 +16,9 @@ Rails.application.routes.draw do
   resources :names
 
   resources :posts do
+    collection do
+      get 'worker', to: 'posts#worker'
+    end
     member do
       get "like", to:    "posts#like"
       get "dislike", to:    "posts#dislike"

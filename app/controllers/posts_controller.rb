@@ -17,6 +17,13 @@ class PostsController < ApplicationController
   # GET /posts/new
   def new
     @post = Post.new
+
+  end
+
+  def worker
+    task = params[:task]
+    HardWorker.perform_async(task)
+    redirect_to root_path, notice: 'Second Post will be archived soon.'
   end
 
   # GET /posts/1/edit
